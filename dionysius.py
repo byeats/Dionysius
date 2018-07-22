@@ -13,13 +13,17 @@ def main():
             i = 1
             for child in item:
                 if child.tag == '{http://www.tei-c.org/ns/1.0}p':
-                    child.tag = 'div'
+                   # content = ???
+                    
+                    child.tag = '{http://www.tei-c.org/ns/1.0}div'
                     child.attrib['subtype'] = 'section'
                     child.attrib['n'] = str(i)
                     child.attrib['type'] = 'textpart'
-                    paragraph = ET.SubElement(child, 'p')                    
+                    paragraph = ET.SubElement(child, 'r')                    
                     i+=1
-    tree.write('/Users/pubintern4/output.xml', encoding='utf-8', xml_declaration = True, method='xml')
+  #  for r_tag in root.iter('{http://www.tei-c.org/ns/1.0}r'):
+   #     r_tag.tag = '{http://www.tei-c.org/ns/1.0}p'
+    tree.write('/Users/pubintern4/output_with_r_tags.xml', encoding='utf-8', xml_declaration = True, method='xml')
 def tester_2():
     ET.register_namespace('', 'http://www.tei-c.org/ns/1.0')
     tree = ET.ElementTree(file="/Users/pubintern4/Documents/tlg0616.tlg001.1st1K-grc1.xml")
